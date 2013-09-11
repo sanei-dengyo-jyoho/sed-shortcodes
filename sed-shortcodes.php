@@ -162,13 +162,12 @@ function sc_iconfont($atts) {
 	extract(shortcode_atts(array(
 			'name' => '',
 			'color' => '',
-			'tagname' => 'i',
 	), $atts));
 	$style .= '';
-	if ($style != '') {
-		$style .= ' style="color: '.$color.';"';
+	if ($color != '') {
+		$style .= 'style="color: '.$color.';"';
 	}
-	return '<'.$tagname.' class="icon-fixed-width icon-'.$name.'"'.$style.'></'.$tagname.'>';
+	return '<i class="icon-fixed-width icon-'.$name.'" '.$style.'></i>';
 
 	unset($style);
 }
