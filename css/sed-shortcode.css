@@ -1,3 +1,48 @@
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+
+
+/* Flai Icons Shadow */
+.flatshadow {
+	text-align: center;
+	position: relative;
+	margin: 0 0 3em 0;
+	padding: 0;
+}
+
+.flat-icon {
+	font-family: 'Open Sans';
+	width: 40px;
+	padding: 23px 28px;
+	font-size: 50px;
+	font-weight: bold;
+	display: inline-block;
+	line-height: 100%;
+	overflow: hidden;
+	text-transform: uppercase;
+	margin-right: 15px;
+	letter-spacing: 0;
+
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.flat-icon.animate {
+	-webkit-transition: all .5s linear;
+	-moz-transition: all .5s linear;
+	-ms-transition: all .5s linear;
+	-o-transition: all .5s linear;
+	transition: all .5s linear;
+}
+
+
 /* FONT AWESOME CUSTOMIZE */
 .icons-ul > li {
 	list-style-type: none;

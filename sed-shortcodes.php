@@ -54,6 +54,19 @@ add_action('wp_print_styles', 'regist_my_style_css');
 
 
 //******************************************************************************
+//  Java Scriptの定義
+//******************************************************************************
+function regist_my_script_js() {
+	// 管理画面では読み込まない
+	if ( !is_admin() ) {
+		wp_register_script('flatshadow-js', plugins_url('js/jquery.flatshadow.min.js', __FILE__), array(), MY_PLUGIN_VERSION, 'all');
+		wp_enqueue_script('flatshadow-js');
+	}
+}
+add_action('wp_print_scripts', 'regist_my_script_js');
+
+
+//******************************************************************************
 //  flush関数を実行
 //******************************************************************************
 function wp_hyper_response() {
