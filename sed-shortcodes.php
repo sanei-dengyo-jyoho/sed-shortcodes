@@ -54,9 +54,8 @@ add_action('wp_print_styles', 'regist_my_style_css');
 
 
 //******************************************************************************
-//  hyper_response()関数を実行
+//  flush関数を実行
 //******************************************************************************
-// wp_hyper_response関数
 function wp_hyper_response() {
 	// flush関数を実行（バッファを吐かせる）
 	flush();
@@ -164,8 +163,12 @@ function sc_iconfont($atts) {
 			'color' => '',
 	), $atts));
 	$style .= '';
+	// css style(color)の定義
 	if ($color != '') {
-		$style .= 'style="color: '.$color.';"';
+		$style .= 'color: '.$color.';';
+	}
+	if ($style != '') {
+		$style .= 'style="'.$style.'"';
 	}
 	return '<i class="icon-fixed-width icon-'.$name.'" '.$style.'></i>';
 
