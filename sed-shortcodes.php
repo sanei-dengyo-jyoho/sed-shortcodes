@@ -322,7 +322,7 @@ function sc_flatshadow_text($atts, $content = null) {
 		$array = str_split($str);
 		$count = count($array);
 		for ($i = 0; $i < $count; $i++) {
-			$ret .= '<'.$tagname.' '.$datacolor.$dataangle.' class="flat-icon'.$dataclass.'"'.$datastyle.'>'.$array[$i].'</'.$tagname.'>';
+			$ret .= '<'.$tagname.$datacolor.$dataangle.' class="flat-icon'.$dataclass.'"'.$datastyle.'>'.$array[$i].'</'.$tagname.'>';
 		}
 		return $ret;
 	}
