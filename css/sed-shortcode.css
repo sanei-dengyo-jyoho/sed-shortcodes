@@ -6,27 +6,66 @@
 }
 
 
-/* Flai Icons Shadow */
-.flatshadow {
+/* Flat Shadow */
+.flat-shadows {
+	display: block;
 	text-align: center;
-	position: relative;
-	margin: 0 0 3em 0;
 	padding: 0;
+	margin: 0 0 15px 0;
 }
 
 .flat-icon {
 	font-family: 'Open Sans';
-	width: 40px;
-	padding: 23px 28px;
 	font-size: 50px;
 	font-weight: bold;
 	display: inline-block;
 	line-height: 100%;
 	overflow: hidden;
+	text-align: center;
 	text-transform: uppercase;
-	margin-right: 15px;
+	margin: 0 15px 0 0;
+	padding: 23px 28px;
 	letter-spacing: 0;
 
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-o-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+
+.flat-icon [class^="icon-"],
+.flat-icon [class*=" icon-"] {
+	vertical-align: top;
+	font-size: 40px;
+}
+
+.flat-icon.circle,
+.flat-icon.circle.transition,
+.flat-icon.transition.circle {
+	width: 40px;
+}
+
+.flat-shadows .flat-icon:last-child {
+	margin-right: 0;
+	margin-bottom: 0;
+}
+
+
+/* FONT AWESOME CUSTOMIZE */
+.icons-ul > li {
+	list-style-type: none;
+}
+
+
+/* CSS 3 */
+.circle {
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	-ms-border-radius: 50%;
@@ -34,7 +73,7 @@
 	border-radius: 50%;
 }
 
-.flat-icon.animate {
+.transition {
 	-webkit-transition: all .5s linear;
 	-moz-transition: all .5s linear;
 	-ms-transition: all .5s linear;
@@ -42,10 +81,62 @@
 	transition: all .5s linear;
 }
 
+.textshadow {
+	-webkit-text-shadow: 1px 1px 1px #a9a9a9;
+	-moz-text-shadow: 1px 1px 1px #a9a9a9;
+	-ms-text-shadow: 1px 1px 1px #a9a9a9;
+	-o-text-shadow: 1px 1px 1px #a9a9a9;
+	text-shadow: 1px 1px 1px #a9a9a9;
+}
 
-/* FONT AWESOME CUSTOMIZE */
-.icons-ul > li {
-	list-style-type: none;
+.boxshadow {
+	-webkit-box-shadow: 0 1px 5px #a9a9a9;
+	-moz-box-shadow: 0 1px 5px #a9a9a9;
+	-ms-box-shadow: 0 1px 5px #a9a9a9;
+	-o-box-shadow: 0 1px 5px #a9a9a9;
+	box-shadow: 0 1px 5px #a9a9a9;
+}
+
+
+/* Color */
+.color-blue {
+	color: #2daebf;
+}
+
+.color-red {
+	color: #e33100;
+}
+
+.color-green {
+	color: #1AC115;
+}
+
+.color-magenta {
+	color: #a9014b;
+}
+
+.color-orange {
+	color: #ff5c00;
+}
+
+.color-yellow {
+	color: #ffb515;
+}
+
+.color-black {
+	color: #222;
+}
+
+.color-gray {
+	color: #808080;
+}
+
+.color-darkgray {
+	color: #a9a9a9;
+}
+
+.color-white {
+	color: #e1e1e1;
 }
 
 
@@ -119,66 +210,6 @@ span.block.smaller {
 
 span.block.smaller.italic {
 	font-style: italic;
-}
-
-
-/* Color */
-.color-blue {
-	color: #2daebf;
-}
-
-.color-red {
-	color: #e33100;
-}
-
-.color-green {
-	color: #1AC115;
-}
-
-.color-magenta {
-	color: #a9014b;
-}
-
-.color-orange {
-	color: #ff5c00;
-}
-
-.color-yellow {
-	color: #ffb515;
-}
-
-.color-black {
-	color: #222;
-}
-
-.color-gray {
-	color: #808080;
-}
-
-.color-darkgray {
-	color: #a9a9a9;
-}
-
-.color-white {
-	color: #e1e1e1;
-}
-
-
-/* Shadow */
-.textshadow {
-	-webkit-text-shadow: 1px 1px 1px #a9a9a9;
-	-moz-text-shadow: 1px 1px 1px #a9a9a9;
-	-ms-text-shadow: 1px 1px 1px #a9a9a9;
-	-o-text-shadow: 1px 1px 1px #a9a9a9;
-	text-shadow: 1px 1px 1px #a9a9a9;
-}
-
-.boxshadow {
-	-webkit-box-shadow: 0 1px 5px #a9a9a9;
-	-moz-box-shadow: 0 1px 5px #a9a9a9;
-	-ms-box-shadow: 0 1px 5px #a9a9a9;
-	-o-box-shadow: 0 1px 5px #a9a9a9;
-	box-shadow: 0 1px 5px #a9a9a9;
 }
 
 
@@ -635,6 +666,7 @@ span.highlight.light {
 
 .gist .gist-file table td {
 	border: none !important;
+	width: auto !important;
 }
 
 .gist .gist-file table tbody tr:hover {
