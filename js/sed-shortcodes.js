@@ -1,19 +1,20 @@
 jQuery.noConflict();
 jQuery(document).ready(function() {
-	//**************************************************************************
-	// リンク先のあるイメージにアイコンを表示する
-	//**************************************************************************
+	//*****************************************************************
+	// *** リンク先のあるイメージにオーバーレイ・アイコンを表示する ***
+	//*****************************************************************
 	// 親要素
-	var content = ['#content', '.content'];
+	var content = ['#page-container', '#content', '.content'];
 	var i, cont;
 	// <a>要素
 	var element = ['a:not([rel*="shadowbox"])', 'a[rel*="shadowbox"]'];
 	var j, elem;
 	// 正規表現
-	var reg = new RegExp('img\-short\-icon|printicon', 'gi');
+	var reg_ignore = new RegExp('img\-short\-icon|mosaic|printicon', 'gi');
+	var reg_size = new RegExp('size\-', 'gi');
 	// 一時変数
-	var obj, temp, targ, img, style, ws, hs, html;
-	// スイッチ
+	var obj, temp, targ, img, attr, ix, style, html;
+	// 処理スイッチ
 	var exec;
 	// オーバーレイ
 	var over = 'image-overlay';
@@ -24,23 +25,24 @@ jQuery(document).ready(function() {
 	var afon = ['image-overlay-fromleft', 'image-overlay-fromtop'];
 	var afoff = ['image-overlay-fadeout', 'image-overlay-fadeout'];
 
+	// **************
 	// *** 親要素 ***
+	// **************
 	jQuery.each(content, function(i, cont) {
 		obj = jQuery.find(cont);
 		if (obj[0]) {
+			// ***************
 			// *** <a>要素 ***
+			// ***************
 			jQuery.each(element, function(j, elem) {
-				// ... a[href]の要素
+				// ... [href]判定？
 				obj = jQuery(cont).find('a[href]'+elem);
 				if (obj[0]) {
-					// <a>要素ごとに対象オブジェクトを判定
+					// <a>要素ごと
 					jQuery(obj).each(function() {
+						style = '';
 						// <a>DOM
 						targ = jQuery(this);
-						// 変数を初期化
-						style = '';
-						ws = '';
-						hs = '';
 						// 処理スイッチＯＮ
 						exec = 1;
 						// ... <img>あり？
@@ -48,47 +50,48 @@ jQuery(document).ready(function() {
 						if (temp[0]) {
 							// <img>DOM
 							img = temp[0];
-							// ... <img>srcあり？
+							// ... [src]あり？
 							temp = jQuery(img).attr('src');
 							if ((typeof temp !== 'undefined') && (temp !== '')) {
-								// ... <img>に正規表現のクラス名あり？
-								// ... →処理スイッチＯＦＦ
+								// ... [class]に例外あり？
 								temp = jQuery(img).attr('class');
 								if ((typeof temp !== 'undefined') && (temp !== '')) {
-									if (temp.match(reg)) {
+									if (temp.match(reg_ignore)) {
+										// **************************
+										// *** 処理スイッチＯＦＦ ***
+										// **************************
 										exec = 0;
+									} else {
+										// ... [class]にサイズ指定あり？
+										if (temp.match(reg_size)) {
+											// ********************
+											// *** サイズを取得 ***
+											// ********************
+											attr = ['height', 'width'];
+											for (ix = 0; ix < attr.length; ix++) {
+												temp = jQuery(img).attr(attr[ix]);
+												if ((typeof temp !== 'undefined') && (temp !== '')) {
+													style += attr[ix]+':'+parseInt(temp)+'px!important;';
+												}
+											}
+											// オーバーレイのサイズ指定
+											if (style !== '') {
+												style = ' style="'+style+'"';
+											}
+										}
 									}
 								}
 								// ... 処理スイッチＯＮ？
 								if (exec) {
-									// <img>幅を取得
-									temp = jQuery(img).attr('width');
-									if ((typeof temp !== 'undefined') && (temp !== '')) {
-										ws = parseInt(temp, 10)+'px';
-									}
-									// <img>高さを取得
-									temp = jQuery(img).attr('height');
-									if ((typeof temp !== 'undefined') && (temp !== '')) {
-										hs = parseInt(temp, 10)+'px';
-									}
-									// オーバーレイにサイズを追加
-									if ((ws !== '') || (hs !== '')) {
-										if (ws === '') {
-											ws = '100%';
-										}
-										if (hs === '') {
-											hs = '100%';
-										}
-										style += ' style = "';
-										style += 'width:'+ws+'!important;';
-										style += 'height:'+hs+'!important;';
-										style += '"';
-									}
-									// <img>をオーバーレイで囲む
+									// *********************************
+									// *** <img>をオーバーレイで囲む ***
+									// *********************************
 									html = '';
 									html += '<div class="'+over+'-wrap"'+style+'>';
 									jQuery(img).wrap(html);
-									// アイコン・クラスを追加
+									// ******************************
+									// *** アイコン・クラスを追加 ***
+									// ******************************
 									html = '';
 									html += '<p class="'+over+'"'+style+'>';
 									html += '<span class="icon-stack">';
@@ -97,7 +100,9 @@ jQuery(document).ready(function() {
 									html += '</span>';
 									html += '</p>';
 									jQuery(targ).find('.'+over+'-wrap').append(html);
-									// ホバー・エフェクトにアニメーション
+									// ******************************************
+									// *** ホバー・エフェクトのアニメーション ***
+									// ******************************************
 									jQuery(targ).hover(function() {
 										jQuery(this).find('.'+over)
 											.removeClass(afoff[j])
@@ -116,5 +121,5 @@ jQuery(document).ready(function() {
 		}
 	});
 	// 変数を破棄
-	delete cont, elem, obj, temp, targ, img;
+	delete content, cont, element, elem, obj, temp, targ, img, attr, reg_ignore, reg_size;
 });

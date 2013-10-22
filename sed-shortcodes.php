@@ -8,7 +8,7 @@ Plugin URI: http://www.sanei-dengyo.com/
 Description: 便利なショートコードを集めました。
 Author: 三英電業株式会社　情報システム
 Author URI: http://www.sanei-dengyo.com/
-Version: 1.0
+Version: 1.0.1
 */
 
 

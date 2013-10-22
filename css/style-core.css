@@ -446,9 +446,11 @@ a[href$=".mp4"]:after {
 
 .content a[href$="print=1"]:hover img,
 .content a[href] img[class*="img-short-icon"]:hover,
+.content a[href] img[class*="mosaic"]:hover,
 .content a[href] img[class*="PrintIcon"]:hover,
 #content a[href$="print=1"]:hover img,
 #content a[href] img[class*="img-short-icon"]:hover,
+#content a[href] img[class*="mosaic"]:hover,
 #content a[href] img[class*="PrintIcon"]:hover {
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
