@@ -21,6 +21,9 @@ jQuery(document).ready(function() {
 	// アイコン
 	var base = ['icon-circle', 'icon-circle'];
 	var icon = ['icon-link', 'icon-zoom-in'];
+	// ホバー・エフェクト
+	var hvon = 'image-hover-enter';
+	var hvoff = 'image-hover-exit';
 	// アニメーション
 	var afon = ['image-overlay-fromleft', 'image-overlay-fromtop'];
 	var afoff = ['image-overlay-fadeout', 'image-overlay-fadeout'];
@@ -101,16 +104,24 @@ jQuery(document).ready(function() {
 									html += '</p>';
 									jQuery(targ).find('.'+over+'-wrap').append(html);
 									// ******************************************
-									// *** ホバー・エフェクトのアニメーション ***
+									// *** ホバー・エフェクトとアニメーション ***
 									// ******************************************
 									jQuery(targ).hover(function() {
-										jQuery(this).find('.'+over)
+										temp = jQuery(this);
+										jQuery(temp).find('img')
+											.removeClass(hvoff)
+											.addClass(hvon);
+										jQuery(temp).find('.'+over)
 											.removeClass(afoff[j])
 											.addClass(afon[j]);
 									}, function() {
-										jQuery(this).find('.'+over)
+										temp = jQuery(this);
+										jQuery(temp).find('.'+over)
 											.removeClass(afon[j])
 											.addClass(afoff[j]);
+										jQuery(temp).find('img')
+											.removeClass(hvon)
+											.addClass(hvoff);
 									});
 								}
 							}
