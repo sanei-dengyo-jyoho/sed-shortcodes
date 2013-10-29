@@ -1,12 +1,10 @@
 === SED Shortcodes ===
 * Plugin Name: SED Shortcodes
 * Plugin URI: http://www.sanei-dengyo.com/
-* Description: Usefull Shortcodes For Any Corporatin.
+* Description: Usefull Shortcodes For Any Corporation.
 * Author: Sanei Dengyo Co.,Ltd.
 * Author URI: http://www.sanei-dengyo.com/
 * Version: 1.0.2
-
-Usefull Shortcodes For Any Corporatin.
 
 == Description ==
 
