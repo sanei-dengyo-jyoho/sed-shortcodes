@@ -5,8 +5,8 @@
 /*
 Plugin Name: SED Shortcodes
 Plugin URI: http://www.sanei-dengyo.com/
-Description: 便利なショートコードを集めました。
-Author: 三英電業株式会社　情報システム
+Description: Usefull Shortcodes For Any Corporatin.
+Author: Sanei Dengyo Co.,Ltd.
 Author URI: http://www.sanei-dengyo.com/
 Version: 1.0.2
 */
