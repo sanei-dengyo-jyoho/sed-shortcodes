@@ -1,10 +1,10 @@
 === SED Shortcodes ===
- * Plugin Name: SED Shortcodes
- * Plugin URI: http://www.sanei-dengyo.com/
- * Description: Usefull Shortcodes For Any Corporatin.
- * Author: Sanei Dengyo Co.,Ltd.
- * Author URI: http://www.sanei-dengyo.com/
- * Version: 1.0.2
+* Plugin Name: SED Shortcodes
+* Plugin URI: http://www.sanei-dengyo.com/
+* Description: Usefull Shortcodes For Any Corporatin.
+* Author: Sanei Dengyo Co.,Ltd.
+* Author URI: http://www.sanei-dengyo.com/
+* Version: 1.0.2
 
 Usefull Shortcodes For Any Corporatin.
 
@@ -14,13 +14,13 @@ Usefull Shortcodes For Any Corporatin.
 
 = Some Feature =
 
- * [blockquato].
- * [iconfont name="@@@"] with FontAwesome.
- * [flatshadows][flatshadow].
- * [note], [tip], [important], [warning], [help].
- * [hightlight_...].
- * [snapshot url="@@@"].
- * tag<a><img> wraped with iconfont overlay.
+* [blockquote].
+* [iconfont name="@@@"] with FontAwesome.
+* [flatshadows][flatshadow].
+* [note], [tip], [important], [warning], [help].
+* [hightlight_...].
+* [snapshot url="@@@"].
+* tag(a img) wraped with iconfont overlay.
 
 == Changelog ==
 
