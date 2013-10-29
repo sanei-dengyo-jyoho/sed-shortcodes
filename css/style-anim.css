@@ -3,8 +3,8 @@
 
 /* overlay fadeout */
 @-webkit-keyframes ImageOverlayFadeout {
-	0% { -webkit-opacity: .7; }
-	50% { -webkit-opacity: .5; }
+	0% { -webkit-opacity: 0.7; }
+	50% { -webkit-opacity: 0.5; }
 	100% { -webkit-opacity: 0; }
 }
 @-moz-keyframes ImageOverlayFadeout {

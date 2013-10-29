@@ -8,14 +8,14 @@ Plugin URI: http://www.sanei-dengyo.com/
 Description: 便利なショートコードを集めました。
 Author: 三英電業株式会社　情報システム
 Author URI: http://www.sanei-dengyo.com/
-Version: 1.0.1
+Version: 1.0.2
 */
 
 
 //******************************************************************************
 //  バージョンの定義
 //******************************************************************************
-define('MY_PLUGIN_VERSION', '1.0');
+define( 'MY_PLUGIN_VERSION', '1.0.2' );
 
 
 //******************************************************************************
@@ -25,62 +25,50 @@ define('MY_PLUGIN_VERSION', '1.0');
 function regist_my_font_css() {
 	// 管理画面では読み込まない
 	if ( !is_admin() ) {
-		wp_register_style('sed-font-awesome', plugins_url('css/font-awesome.min.css', __FILE__), array(), MY_PLUGIN_VERSION, 'all');
-		wp_enqueue_style('sed-font-awesome');
+		wp_register_style( 'sed-font-awesome', plugins_url( 'css/font-awesome.min.css', __FILE__ ), array(), MY_PLUGIN_VERSION, 'all' );
+		wp_enqueue_style( 'sed-font-awesome' );
 	}
 }
 
-add_action('wp_print_styles', 'regist_my_font_css');
-
-function regist_my_font_ie7_css() {
-	// 管理画面では読み込まない
-	if ( !is_admin() ) {
-		wp_register_style('sed-font-awesome-ie7', plugins_url('css/font-awesome-ie7.min.css', __FILE__), array(), MY_PLUGIN_VERSION, 'all');
-		wp_enqueue_style('sed-font-awesome-ie7');
-		global $wp_styles;
-		$wp_styles->add_data( 'sed-font-awesome-ie7', 'conditional', 'lte IE 7' );
-	}
-}
-
-add_action('wp_print_styles', 'regist_my_font_ie7_css');
+add_action( 'wp_print_styles', 'regist_my_font_css' );
 
 
 // Shortcode
 function regist_my_style_css() {
 	// 管理画面では読み込まない
 	if ( !is_admin() ) {
-		wp_register_style('sed-shortcodes', plugins_url('css/style.min.css', __FILE__), array(), MY_PLUGIN_VERSION, 'all');
-		wp_enqueue_style('sed-shortcodes');
+		wp_register_style( 'sed-shortcodes', plugins_url( 'css/style.min.css', __FILE__ ), array(), MY_PLUGIN_VERSION, 'all' );
+		wp_enqueue_style( 'sed-shortcodes' );
 	}
 }
 
-add_action('wp_print_styles', 'regist_my_style_css');
+add_action( 'wp_print_styles', 'regist_my_style_css' );
 
 
 //******************************************************************************
 //  Java Scriptの定義
 //******************************************************************************
 // Shortcode
-function load_script_jquery() {
+function regist_my_script_js() {
 	if ( !is_admin() ) {
-		$src = plugins_url('js/sed-shortcodes.min.js', __FILE__);
+		$src = plugins_url( 'js/sed-shortcodes.min.js', __FILE__ );
 		echo '<script type="text/javascript" src="'.$src.'"></script>';
 	}
 }
 
-add_action('wp_head', 'load_script_jquery');
+add_action( 'wp_head', 'regist_my_script_js' );
 
 
 // Flat Shadow
-function regist_my_script_js() {
+function regist_my_flatshadow_js() {
 	// 管理画面では読み込まない
 	if ( !is_admin() ) {
-		wp_register_script('flatshadow', plugins_url('js/jquery.flatshadow.min.js', __FILE__), array(), MY_PLUGIN_VERSION, 'all');
-		wp_enqueue_script('flatshadow');
+		wp_register_script( 'flatshadow', plugins_url( 'js/jquery.flatshadow.min.js', __FILE__ ), array(), MY_PLUGIN_VERSION, 'all' );
+		wp_enqueue_script( 'flatshadow' );
 	}
 }
 
-add_action('wp_print_scripts', 'regist_my_script_js');
+add_action( 'wp_print_scripts', 'regist_my_flatshadow_js' );
 
 
 //******************************************************************************
@@ -99,21 +87,21 @@ add_action ( 'wp_head', 'my_force_flush', 9999 );
 //******************************************************************************
 //  ウィジェットでショートコードを使う
 //******************************************************************************
-add_filter('widget_text', 'shortcode_unautop');
-add_filter('widget_text', 'do_shortcode');
+add_filter( 'widget_text', 'shortcode_unautop' );
+add_filter( 'widget_text', 'do_shortcode' );
 
 
 //******************************************************************************
 //  抜粋でショートコードを使う
 //******************************************************************************
-add_filter('the_excerpt', 'shortcode_unautop');
-add_filter('the_excerpt', 'do_shortcode');
+add_filter( 'the_excerpt', 'shortcode_unautop' );
+add_filter( 'the_excerpt', 'do_shortcode' );
 
 
 //******************************************************************************
 //  当社
 //******************************************************************************
-function fnc_my_company($atts) {
+function fnc_my_company( $atts ) {
 	$ret = $atts;
 	$dic = array(
 			'copyright' => 'Sanei Dengyo Co.,Ltd.',
@@ -132,55 +120,55 @@ function fnc_my_company($atts) {
 //******************************************************************************
 //  当社のホームページへのリンク
 //******************************************************************************
-function sc_homepage_site_link($atts) {
-	extract(shortcode_atts(array(
+function sc_homepage_site_link( $atts ) {
+	extract( shortcode_atts( array(
 			'copyright' => 'true',
 			'link' => 'false',
-	), $atts));
+	), $atts ) );
 
 	$ret = '';
 	// Copyrightの表示
-	if ($copyright == 'true') {
+	if ( $copyright == 'true' ) {
 		$ret .= 'Copyright &#169; ';
 	}
 	// HyperLinkの表示
-	if ($link == 'true') {
+	if ( $link == 'true' ) {
 		$ret .= '<a class="site-link" href="';
-		$ret .= fnc_my_company('url');
+		$ret .= fnc_my_company( 'url' );
 		$ret .= '" title="';
-		$ret .= fnc_my_company('name');
+		$ret .= fnc_my_company( 'name' );
 		$ret .= '" target="_blank" rel="external nofollow">';
 		$ret .= '</a>';
 	}
-	$ret .= fnc_my_company('copyright');
+	$ret .= fnc_my_company( 'copyright' );
 
 	return $ret;
 }
 
-add_shortcode('homepage_site_link', 'sc_homepage_site_link');
+add_shortcode( 'homepage_site_link', 'sc_homepage_site_link' );
 
 
 //******************************************************************************
 //  編集画面だけに表示するコメント
 //******************************************************************************
-function sc_comment($atts, $content = null) {
-	return '<div style="display: none;">'.do_shortcode($content).'</div>';
+function sc_comment( $atts, $content = null ) {
+	return '<div style="display: none;">'.do_shortcode( $content ).'</div>';
 }
 
-add_shortcode('comment', 'sc_comment');
+add_shortcode( 'comment', 'sc_comment' );
 
 
 //******************************************************************************
 //  @文字インデント
 //******************************************************************************
-function sc_indent($atts) {
-	extract(shortcode_atts(array(
+function sc_indent( $atts ) {
+	extract( shortcode_atts( array(
 			'count' => 1,
-	), $atts));
+	), $atts ) );
 	return '<p style="text-indent: '.$count.'em;" />';
 }
 
-add_shortcode('indent', 'sc_indent');
+add_shortcode( 'indent', 'sc_indent' );
 
 
 //******************************************************************************
@@ -190,90 +178,90 @@ function sc_line_break() {
 	return '<br class="clear" />';
 }
 
-add_shortcode('line_break', 'sc_line_break');
+add_shortcode( 'line_break', 'sc_line_break' );
 
 
 //******************************************************************************
 // Blockquote
 //******************************************************************************
-function sc_blockquote($atts, $content = null) {
+function sc_blockquote( $atts, $content = null ) {
 	$ret  = '';
 	$ret .= '<blockquote>';
 	$ret .= '<div>';
-	$ret .= '<i class="icon-quote-left icon-2x pull-left icon-muted"></i>';
-	$ret .= do_shortcode($content);
-	$ret .= '<i class="icon-quote-right icon-2x pull-right icon-muted"></i>';
+	$ret .= '<i class="fa fa-quote-left fa-2x pull-left color-white"></i>';
+	$ret .= do_shortcode( $content );
+	$ret .= '<i class="fa fa-quote-right fa-2x pull-right color-white"></i>';
 	$ret .= '</div>';
 	$ret .= '</blockquote>';
 	return $ret;
 }
 
-add_shortcode('blockquote', 'sc_blockquote');
+add_shortcode( 'blockquote', 'sc_blockquote' );
 
 
 //******************************************************************************
 // Cite
 //******************************************************************************
-function sc_cite($atts, $content = null) {
-	return '<cite>'.do_shortcode($content).'</cite>';
+function sc_cite( $atts, $content = null ) {
+	return '<cite>'.do_shortcode( $content ).'</cite>';
 }
 
-add_shortcode('cite', 'sc_cite');
+add_shortcode( 'cite', 'sc_cite' );
 
 
 //******************************************************************************
 //  HTML5 タグ
 //******************************************************************************
-function sc_tag_i($atts) {
-	extract(shortcode_atts(array(
+function sc_tag_i( $atts ) {
+	extract( shortcode_atts( array(
 			'id' => '',
 			'class' => '',
-	), $atts));
+	), $atts ) );
 
 	$ret  = '';
 	$ret .= '<i';
 	// idを追加
-	if ($id != '') {
+	if ( $id != '' ) {
 		$ret .= ' id="'.$id.'"';
 	}
 	// classを追加
-	if ($class != '') {
+	if ( $class != '' ) {
 		$ret .= ' class="'.$class.'"';
 	}
 	$ret .= '></i>';
 	return $ret;
 }
 
-add_shortcode('tag_i', 'sc_tag_i');
+add_shortcode( 'tag_i', 'sc_tag_i' );
 
 
 //******************************************************************************
 //  Java Scripts Include
 //******************************************************************************
 // Java Scripts Source Link
-function sc_jsInclude($atts) {
-	extract(shortcode_atts(array(
+function sc_jsInclude( $atts ) {
+	extract( shortcode_atts( array(
 			'js' => '',
 			'delim' => '::::',
-	), $atts));
+	), $atts ) );
 
 	$ret = '';
 	$str = $js;
 
-	if ($str != '') {
-		if ($delim != '') {
+	if ( $str != '' ) {
+		if ( $delim != '' ) {
 			// 区切り文字の有無？
-			if (strstr($str, $delim)) {
+			if ( strstr( $str, $delim ) ) {
 				// 文字列中に区切り文字が存在する場合
 				// 文字列を区切り文字を除いて分割する
-				$array = explode($delim, $str);
+				$array = explode( $delim, $str );
 			} else {
 				// 文字列をそのまま代入する
-				$array = array($str);
+				$array = array( $str );
 			}
 			// タグを組み立てる
-			$count = count($array);
-			for ($i = 0; $i < $count; $i++) {
+			$count = count( $array );
+			for ( $i = 0; $i < $count; $i++ ) {
 				$ret .= '<script type="text/javascript" src="'.$array[$i].'"></script>';
 			}
 		}
@@ -281,27 +269,25 @@ function sc_jsInclude($atts) {
 	}
 }
 
-add_shortcode('jsInclude', 'sc_jsInclude');
+add_shortcode( 'jsInclude', 'sc_jsInclude' );
 
 
 // Java Scripts Source Embed
-function sc_jsScript($atts, $content = null) {
-	extract(shortcode_atts(array(
-	), $atts));
+function sc_jsScript( $atts, $content = null ) {
+	extract( shortcode_atts( array(
+	), $atts ) );
 
 	$ret = '';
 	$str = $content;
 
-	if ($str != '') {
+	if ( $str != '' ) {
 		$ret .= "<script type='text/javascript'>"."\n";
-
-		$str  = str_replace("&#8216;","'",$str);
-		$str  = str_replace("&#8217;","'",$str);
-		$str  = str_replace("&#8242;","'",$str);
-		$str  = str_replace("&gt;",">",$str);
-		$str  = str_replace("&lt;","<",$str);
-		$str  = str_replace("<br />","",$str);
-
+		$str  = str_replace( "&#8216;", "'", $str );
+		$str  = str_replace( "&#8217;", "'", $str );
+		$str  = str_replace( "&#8242;", "'", $str );
+		$str  = str_replace( "&gt;", ">", $str );
+		$str  = str_replace( "&lt;", "<", $str );
+		$str  = str_replace( "<br />", "", $str );
 		$ret .= $str."\n";
 		$ret .= "</script>"."\n";
 		
@@ -309,13 +295,13 @@ function sc_jsScript($atts, $content = null) {
 	}
 }
 
-add_shortcode('jsScript', 'sc_jsScript');
+add_shortcode( 'jsScript', 'sc_jsScript' );
 
 
 //******************************************************************************
 //  Color Code Convert
 //******************************************************************************
-function fnc_color_code($color) {
+function fnc_color_code( $color ) {
 	$ret = $color;
 	// 色名を色コードに対応させる辞書
 	$dic = array(
@@ -353,60 +339,70 @@ function fnc_color_code($color) {
 //******************************************************************************
 //  Icon Font
 //******************************************************************************
-function sc_iconfont($atts) {
-	extract(shortcode_atts(array(
+function sc_iconfont( $atts ) {
+	extract( shortcode_atts( array(
 			'name' => '',
 			'class' => '',
 			'color' => '',
+			'li' => 'false',
 			'tagname' => 'i',
 			'size' => '',
 			'basename' => '',
 			'baseclass' => '',
 			'basefront' => 'false',
 			'stack_tagname' => 'span',
-	), $atts));
+	), $atts ) );
 
+	// li-classを追加
+	$lidata = '';
+	if ( $li == 'true' ) {
+		$lidata = 'fa-li ';
+	}
 	// classを追加
 	$classdata = '';
-	if ($class != '') {
+	if ( $class != '' ) {
 		$classdata = ' '.$class;
 	}
 	// css styleを追加
 	$styledata = '';
-	if ($color != '') {
-		$styledata = ' style="color: '.fnc_color_code($color).';';
+	if ( $color != '' ) {
+		$styledata = ' style="color:'.fnc_color_code( $color ).';"';
 	}
 	// sizeのclassを追加
 	$sizedata = '';
-	if ($size != '') {
-		$sizedata = ' icon-'.$size;
+	if ( $size != '' ) {
+		$sizedata = ' fa-'.$size;
 	}
 
 	$ret = '';
 
-	if ($basename == '') {
+	if ( $basename == '' ) {
 		// ... base無しの場合
-		if ($classdata == '') {
-			$classdata = ' icon-fixed-width';
+		if ( $class == '' ) {
+			$classdata = ' fa-fw';
 		}
-		$ret .= '<'.$tagname.' class="icon-'.$name.$classdata.$sizedata.'"'.$styledata.'></'.$tagname.'>';
+		$ret .= '<'.$tagname.' class="'.$lidata.'fa fa-'.$name.$classdata.$sizedata.'"'.$styledata.'>';
+		$ret .= '</'.$tagname.'>';
 	} else {
 		// ... base有りの場合
 		// baseのclassを追加
 		$basedata = '';
-		if ($baseclass != '') {
+		if ( $baseclass != '' ) {
 			$basedata = ' '.$baseclass;
 		}
 		// stackのタグ
-		$ret .= '<'.$stack_tagname.' class="icon-stack'.$sizedata.'">';
+		if ( $size == '' ) {
+			$sizedata = ' fa-lg';
+		}
+		$ret .= '<'.$stack_tagname.' class="fa-stack'.$sizedata.'">';
 
-		$arr = array('','');
-		// icon
-		$arr[0] = '<'.$tagname.' class="icon-'.$basename.' icon-stack-base'.$basedata.'"></'.$tagname.'>';
+		$arr = array( '', '' );
 		// base
-		$arr[1] = '<'.$tagname.' class="icon-'.$name.$classdata.'"'.$styledata.'></'.$tagname.'>';
+		$arr[0] = '<'.$tagname.' class="fa fa-'.$basename.' fa-stack-2x'.$basedata.'"></'.$tagname.'>';
+		// icon
+		$arr[1] = '<'.$tagname.' class="fa fa-'.$name.$classdata.' fa-stack-1x"'.$styledata.'></'.$tagname.'>';
 
-		if ($basefront == 'true') {
+		if ( $basefront == 'true' ) {
 			// ... baseを前面に表示する場合
 			$ret .= $arr[1].$arr[0];
 		} else {
@@ -418,15 +414,15 @@ function sc_iconfont($atts) {
 	return $ret;
 }
 
-add_shortcode('iconfont', 'sc_iconfont');
+add_shortcode( 'iconfont', 'sc_iconfont' );
 
 
 //******************************************************************************
 //  Flat Shadow
 //******************************************************************************
 // Flat Shadow Group
-function sc_flatshadows($atts, $content = null) {
-	extract(shortcode_atts(array(
+function sc_flatshadows( $atts, $content = null ) {
+	extract( shortcode_atts( array(
 			'class' => '',
 			'id' => '',
 			'color' => '',
@@ -435,54 +431,57 @@ function sc_flatshadows($atts, $content = null) {
 			'boxshadow' => '',
 			'style' => '',
 			'tagname' => 'div',
-	), $atts));
+	), $atts ) );
 
 	// classを追加
 	$dataclass = '';
-	if ($class != '') {
+	if ( $class != '' ) {
 		$dataclass = $class.' ';
 	}
 	// idを追加
 	$dataid = '';
-	if ($id != '') {
+	if ( $id != '' ) {
 		$dataid = '-'.$id;
 	}
 	// css styleを追加
 	$datastyle = '';
-	if ($style != '') {
+	if ( $style != '' ) {
 		$datastyle = ' style="'.$style.'"';
 	}
 
-	$ret = '';
+	$ret  = '';
 
-	$ret .= '<'.$tagname.' class="'.$dataclass.'flat-shadows flat-icons'.$dataid.'"'.$datastyle.'>'.do_shortcode($content).'</'.$tagname.'>';
+	$ret .= '<'.$tagname.' class="'.$dataclass.'flat-shadows flat-icons'.$dataid.'"'.$datastyle.'>';
+	$ret .= do_shortcode( $content );
+	$ret .= '</'.$tagname.'>';
 	// jQueryの追加
 	$ret .= "\n";
 	$ret .= "<script type='text/javascript'>"."\n";
 	$ret .= "jQuery.noConflict();"."\n";
 	$ret .= "jQuery(document).ready(function(){"."\n";
 	$ret .= "jQuery('.flat-shadows.flat-icons".$dataid." .flat-icon').flatshadow({";
+
 	// ... jQueryのオプションを追加
-	$opt = "";
+	$opt  = "";
 	// colorの追加
-	if ($color != "") {
-		if ($opt != "") { $opt .= ", "; }
-		$opt .= "color: '".fnc_color_code($color)."'";
+	if ( $color != "" ) {
+		if ( $opt != "" ) { $opt .= ", "; }
+		$opt .= "color:'".fnc_color_code( $color )."'";
 	}
 	// angleの追加
-	if ($angle != "") {
-		if ($opt != "") { $opt .= ", "; }
-		$opt .= "angle: '".$angle."'";
+	if ( $angle != "" ) {
+		if ( $opt != "" ) { $opt .= ", "; }
+		$opt .= "angle:'".$angle."'";
 	}
 	// fadeの追加
-	if ($fade != "") {
-		if ($opt != "") { $opt .= ", "; }
-		$opt .= "fade: ".$fade;
+	if ( $fade != "" ) {
+		if ( $opt != "" ) { $opt .= ", "; }
+		$opt .= "fade:".$fade;
 	}
 	// box-shadowの追加
-	if ($boxshadow != "") {
-		if ($opt != "") { $opt .= ", "; }
-		$opt .= "boxShadow: '".fnc_color_code($boxshadow)."'";
+	if ( $boxshadow != "" ) {
+		if ( $opt != "" ) { $opt .= ", "; }
+		$opt .= "boxShadow:'".fnc_color_code( $boxshadow )."'";
 	}
 
 	$ret .= $opt."});"."\n";
@@ -492,121 +491,129 @@ function sc_flatshadows($atts, $content = null) {
 	return $ret;
 }
 
-add_shortcode('flatshadows', 'sc_flatshadows');
+add_shortcode( 'flatshadows', 'sc_flatshadows' );
 
 
 // Flat Shadow Icon
-function sc_flatshadow($atts, $content = null) {
-	extract(shortcode_atts(array(
+function sc_flatshadow( $atts, $content = null ) {
+	extract( shortcode_atts( array(
 			'color' => '',
 			'angle' => '',
 			'class' => '',
 			'style' => '',
 			'tagname' => 'div',
 			'delim' => '::::',
-	), $atts));
+	), $atts ) );
 
 	// colorを追加
 	$datacolor = '';
-	if ($color != '') {
-		$datacolor = ' data-color="'.fnc_color_code($color).'"';
+	if ( $color != '' ) {
+		$datacolor = ' data-color="'.fnc_color_code( $color ).'"';
 	}
 	// angleを追加
 	$dataangle = '';
-	if ($angle != '') {
+	if ( $angle != '' ) {
 		$dataangle = ' data-angle="'.$angle.'"';
 	}
 	// classを追加
 	$dataclass = '';
-	if ($class != '') {
+	if ( $class != '' ) {
 		$dataclass = ' '.$class;
 	}
 	// css styleを追加
 	$datastyle = '';
-	if ($style != '') {
+	if ( $style != '' ) {
 		$datastyle = ' style="'.$style.'"';
 	}
 
 	$ret = '';
 	$str = $content;
 
-	if ($str != '') {
-		if ($delim != '') {
+	if ( $str != '' ) {
+		if ( $delim != '' ) {
 			// ... 区切り文字の有無？
-			if (strstr($str, $delim)) {
+			if (strstr( $str, $delim ) ) {
 				// 文字列中に区切り文字が存在する場合
 				// 文字列を区切り文字を除いて分割する
-				$array = explode($delim, $str);
+				$array = explode( $delim, $str );
 			} else {
 				// 文字列をそのまま代入する
-				$array = array($str);
+				$array = array( $str );
 			}
 		} else {
 			// 文字列を1文字づつ分解する
-			$array = str_split($str);
+			$array = str_split( $str );
 		}
 		// タグを組み立てる
-		$count = count($array);
-		for ($i = 0; $i < $count; $i++) {
-			$ret .= '<'.$tagname.$datacolor.$dataangle.' class="flat-icon'.$dataclass.'"'.$datastyle.'>'.do_shortcode($array[$i]).'</'.$tagname.'>';
+		$count = count( $array );
+		for ( $i = 0; $i < $count; $i++ ) {
+			$ret .= '<'.$tagname.$datacolor.$dataangle.' class="flat-icon'.$dataclass.'"'.$datastyle.'>';
+			$ret .= do_shortcode( $array[$i] );
+			$ret .= '</'.$tagname.'>';
 		}
 		return $ret;
 	}
 }
 
-add_shortcode('flatshadow', 'sc_flatshadow');
+add_shortcode( 'flatshadow', 'sc_flatshadow' );
 
 
 //******************************************************************************
 //  URLのスクリーンショット
 //******************************************************************************
-function sc_snapshot($atts) {
-	extract(shortcode_atts(array(
+function sc_snapshot( $atts ) {
+	extract( shortcode_atts( array(
 			'url' => '',
 			'w' => 500,
 			'caption' => '',
 			'clear' => '',
-	), $atts));
+	), $atts ) );
 
-	if ($url != '') {
+	$ret = '';
+
+	if ( $url != '' ) {
 		// URLのキャプチャ
-		$src = en_sc_snapshot($url, $w);
+		$src = en_sc_snapshot( $url, $w );
 
-		if ($src != '') {
+		if ( $src != '' ) {
 			// classの追加
 			$class = '';
-			if ($clear == 'true') {
+			if ( $clear == 'true' ) {
 				$class = ' clear';
 			}
 			// imgタグ
 			$img = '<img src="'.$src.'" alt="'.$caption.'" />';
 			// captionの追加
 			$desc = '';
-			if ($caption != '') {
+			if ( $caption != '' ) {
 				$desc = '<div class="caption">'.$caption.'</div>';
 			}
 
-			return '<div class="snapshot'.$class.'" style="width: '.$w.'px"><a href="'.$url.'">'.$img.'</a>'.$desc.'</div>';
+			$ret .= '<div class="snapshot'.$class.'" style="width:'.$w.'px">';
+			$ret .= '<a href="'.$url.'">'.$img.'</a>';
+			$ret .= $desc;
+			$ret .= '</div>';
 		}
 	}
+	return $ret;
 }
 
-function en_sc_snapshot($url = '', $w = 500){
-	return 'http://s.wordpress.com/mshots/v1/'.urlencode(clean_url($url)).'?w='.$w;
+function en_sc_snapshot( $url = '', $w = 500 ){
+	return 'http://s.wordpress.com/mshots/v1/'.urlencode( clean_url( $url ) ).'?w='.$w;
 }
 
-add_shortcode('snapshot', 'sc_snapshot');
+add_shortcode( 'snapshot', 'sc_snapshot' );
 
 
 //******************************************************************************
 //  Note
 //******************************************************************************
-function fnc_note($class, $icon, $color, $content = null) {
+function fnc_note( $class, $icon, $color, $content = null ) {
 	$ret  = '';
 	$ret .= '<div class="note-wrap">';
 	$ret .= '<div class="note-box '.$class.'">';
-	$ret .= '<i class="icon-'.$icon.' icon-3x pull-left color-'.$color.' textshadow"></i>';
-	$ret .= do_shortcode($content);
+	$ret .= '<i class="fa fa-'.$icon.' fa-3x pull-left color-'.$color.' textshadow"></i> ';
+	$ret .= do_shortcode( $content );
 	$ret .= '</div>';
 	$ret .= '</div>';
 	return $ret;
@@ -614,143 +621,147 @@ function fnc_note($class, $icon, $color, $content = null) {
 
 
 // note
-function sc_note($atts, $content = null) {
-	return fnc_note('classic', 'book', 'white', $content);
+function sc_note( $atts, $content = null ) {
+	return fnc_note( 'classic', 'book', 'white', $content );
 }
 
-add_shortcode('note', 'sc_note');
+add_shortcode( 'note', 'sc_note' );
 
 
 // tip
-function sc_tip($atts, $content = null) {
-	return fnc_note('tip', 'lightbulb', 'blue', $content);
+function sc_tip( $atts, $content = null ) {
+	return fnc_note( 'tip', 'lightbulb-o', 'blue', $content );
 }
 
-add_shortcode('tip', 'sc_tip');
+add_shortcode( 'tip', 'sc_tip' );
 
 
 // important
-function sc_important($atts, $content = null) {
-	return fnc_note('important', 'lock', 'yellow', $content);
+function sc_important( $atts, $content = null ) {
+	return fnc_note( 'important', 'lock', 'yellow', $content );
 }
 
-add_shortcode('important', 'sc_important');
+add_shortcode( 'important', 'sc_important' );
 
 
 // warning
-function sc_warning($atts, $content = null) {
-	return fnc_note('warning', 'bullhorn', 'red', $content);
+function sc_warning( $atts, $content = null ) {
+	return fnc_note( 'warning', 'bullhorn', 'red', $content );
 }
 
-add_shortcode('warning', 'sc_warning');
+add_shortcode( 'warning', 'sc_warning' );
 
 
 // help
-function sc_help($atts, $content = null) {
-	return fnc_note('help', 'medkit', 'green', $content);
+function sc_help( $atts, $content = null ) {
+	return fnc_note( 'help', 'medkit', 'green', $content );
 }
 
-add_shortcode('help', 'sc_help');
+add_shortcode( 'help', 'sc_help' );
 
 
 //******************************************************************************
 // Dropcap
 //******************************************************************************
-function sc_dropcap1($atts, $content = null) {
+function sc_dropcap1( $atts, $content = null ) {
 	return '<span class="dropcap1">'.$content.'</span>';
 }
 
-add_shortcode('dropcap1', 'sc_dropcap1');
+add_shortcode( 'dropcap1', 'sc_dropcap1' );
 
 
-function sc_dropcap2($atts, $content = null) {
+function sc_dropcap2( $atts, $content = null ) {
 	return '<span class="dropcap2">'.$content.'</span>';
 }
 
-add_shortcode('dropcap2', 'sc_dropcap2');
+add_shortcode( 'dropcap2', 'sc_dropcap2' );
 
 
 //******************************************************************************
 // Highlight
 //******************************************************************************
-function fnc_highlight($color, $content = '') {
+function fnc_highlight( $color, $content = null ) {
 	$ret  = '';
 	$ret .= '<span class="highlight '.$color.' textshadow">';
-	$ret .= do_shortcode($content);
+	$ret .= do_shortcode( $content );
 	$ret .= '</span>';
 	return $ret;
 }
 
 
 // blue
-function sc_highlight_blue($atts, $content = null) {
-	return fnc_highlight('blue', $content);
+function sc_highlight_blue( $atts, $content = null ) {
+	return fnc_highlight( 'blue', $content );
 }
 
-add_shortcode('highlight_blue', 'sc_highlight_blue');
+add_shortcode( 'highlight_blue', 'sc_highlight_blue' );
 
 
 // red
-function sc_highlight_red($atts, $content = null) {
-	return fnc_highlight('red', $content);
+function sc_highlight_red( $atts, $content = null ) {
+	return fnc_highlight( 'red', $content );
 }
 
-add_shortcode('highlight_red', 'sc_highlight_red');
+add_shortcode( 'highlight_red', 'sc_highlight_red' );
 
 
 // green
-function sc_highlight_green($atts, $content = null) {
-	return fnc_highlight('green', $content);
+function sc_highlight_green( $atts, $content = null ) {
+	return fnc_highlight( 'green', $content );
 }
 
-add_shortcode('highlight_green', 'sc_highlight_green');
+add_shortcode( 'highlight_green', 'sc_highlight_green' );
 
 
 // yellow
-function sc_highlight_yellow($atts, $content = null) {
-	return fnc_highlight('yellow', $content);
+function sc_highlight_yellow( $atts, $content = null ) {
+	return fnc_highlight( 'yellow', $content );
 }
 
-add_shortcode('highlight_yellow', 'sc_highlight_yellow');
+add_shortcode( 'highlight_yellow', 'sc_highlight_yellow' );
 
 
 // dark
-function sc_highlight_dark($atts, $content = null) {
-	return fnc_highlight('dark', $content);
+function sc_highlight_dark( $atts, $content = null ) {
+	return fnc_highlight( 'dark', $content );
 }
 
-add_shortcode('highlight_dark', 'sc_highlight_dark');
+add_shortcode( 'highlight_dark', 'sc_highlight_dark' );
 
 
 // light
-function sc_highlight_light($atts, $content = null) {
-	return fnc_highlight('light', $content);
+function sc_highlight_light( $atts, $content = null ) {
+	return fnc_highlight( 'light', $content );
 }
 
-add_shortcode('highlight_light', 'sc_highlight_light');
+add_shortcode( 'highlight_light', 'sc_highlight_light' );
 
 
 //******************************************************************************
 //  アイキャッチ・アイコン
 //******************************************************************************
-function sc_catch_icon($atts) {
-	extract(shortcode_atts(array(
+function sc_catch_icon( $atts) {
+	extract( shortcode_atts( array(
 			'name' => '',
-	), $atts));
+	), $atts ) );
 
-	return '<img class="img-short-icon" src="'.plugins_url('images/catch_icon/'.$name.'.png', __FILE__).'" />';
+	$ret  = '';
+	$ret .= '<img class="img-short-icon" src="';
+	$ret .= plugins_url( 'images/catch_icon/'.$name.'.png', __FILE__ );
+	$ret .= '" />';
+	return $ret;
 }
 
-add_shortcode('catch_icon', 'sc_catch_icon');
+add_shortcode( 'catch_icon', 'sc_catch_icon' );
 
 
 //******************************************************************************
 //  県名アイコン
 //******************************************************************************
-function sc_japan_icon($atts) {
-	extract(shortcode_atts(array(
+function sc_japan_icon( $atts ) {
+	extract( shortcode_atts( array(
 			'name' => '',
-	), $atts));
+	), $atts ) );
 
 	$basename = $name;
 	// 県名をファイル名に対応させる辞書
@@ -803,31 +814,36 @@ function sc_japan_icon($atts) {
 			'鹿児島県' => 'kagoshima-ken',
 			'沖縄県' => 'okinawa-ken',
 			);
-	if ( isset( $dic[$name]) ) {
+	if ( isset( $dic[$name] ) ) {
     	$basename = $dic[$name];
 	} else {
     	$basename = $name;
 	}
-	return '<img class="img-short-icon" src="'.plugins_url('images/japan_icon/'.$basename.'.png', __FILE__).'" />';
+
+	$ret  = '';
+	$ret .= '<img class="img-short-icon" src="';
+	$ret .= plugins_url( 'images/japan_icon/'.$basename.'.png', __FILE__ );
+	$ret .= '" />';
+	return $ret;
 }
 
-add_shortcode('japan_icon', 'sc_japan_icon');
+add_shortcode( 'japan_icon', 'sc_japan_icon' );
 
 
 //******************************************************************************
 // Gist Syntax Highlighter
 //******************************************************************************
-function gist_shortcode($atts) {
-	return sprintf('<script src="https://gist.github.com/%s.js%s"></script>',$atts['id'],$atts['file']?'?file='.$atts['file']:'');
+function gist_shortcode( $atts ) {
+	return sprintf( '<script src="https://gist.github.com/%s.js%s"></script>', $atts['id'], $atts['file']?'?file='.$atts['file']:'' );
 }
 
-add_shortcode('gist','gist_shortcode');
+add_shortcode( 'gist', 'gist_shortcode' );
 
 
 // [gist id="ID" file="FILE"]
-function gist_shortcode_filter($content) {
-	return preg_replace('/https:\/\/gist.github.com\/([\d]+)[\.js\?]*[\#]*file[=|_]+([\w\.]+)(?![^<]*<\/a>)/i', '[gist id="${1}" file="${2}"]', $content );
+function gist_shortcode_filter( $content ) {
+	return preg_replace( '/https:\/\/gist.github.com\/([\d]+)[\.js\?]*[\#]*file[=|_]+([\w\.]+)(?![^<]*<\/a>)/i', '[gist id="${1}" file="${2}"]', $content );
 }
 
-add_filter( 'the_content', 'gist_shortcode_filter', 9);
+add_filter( 'the_content', 'gist_shortcode_filter', 9 );
 ?>
