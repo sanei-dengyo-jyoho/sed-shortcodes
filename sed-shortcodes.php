@@ -398,9 +398,11 @@ function sc_iconfont( $atts ) {
 
 		$arr = array( '', '' );
 		// base
-		$arr[0] = '<'.$tagname.' class="fa fa-'.$basename.' fa-stack-2x'.$basedata.'"></'.$tagname.'>';
+		$arr[0] .= '<'.$tagname.' class="fa fa-'.$basename.' fa-stack-2x'.$basedata.'">';
+		$arr[0] .= '</'.$tagname.'>';
 		// icon
-		$arr[1] = '<'.$tagname.' class="fa fa-'.$name.$classdata.' fa-stack-1x"'.$styledata.'></'.$tagname.'>';
+		$arr[1] .= '<'.$tagname.' class="fa fa-'.$name.$classdata.' fa-stack-1x"'.$styledata.'>';
+		$arr[1] .= '</'.$tagname.'>';
 
 		if ( $basefront == 'true' ) {
 			// ... baseを前面に表示する場合
