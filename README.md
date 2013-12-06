@@ -4,7 +4,7 @@
 * Description: Usefull Shortcodes For Any Corporation.
 * Author: Sanei Dengyo Co.,Ltd.
 * Author URI: http://www.sanei-dengyo.com/
-* Version: 1.0.2
+* Version: 1.0.3
 
 == Description ==
 
@@ -21,6 +21,10 @@
 * tag(a img) wraped with iconfont overlay.
 
 == Changelog ==
+
+= 1.0.3 =
+* Update:
+ 1.FontAwesome 4.0.3
 
 = 1.0.2 =
 * Update:

@@ -1,8 +1,8 @@
+//*****************************************************************
+// *** リンク先のあるイメージにオーバーレイ・アイコンを表示する ***
+//*****************************************************************
 jQuery.noConflict();
 jQuery(document).ready(function() {
-	//*****************************************************************
-	// *** リンク先のあるイメージにオーバーレイ・アイコンを表示する ***
-	//*****************************************************************
 	// 親要素
 	var content = ['#page-container', '#content', '.content'];
 	var i, cont;
@@ -10,7 +10,7 @@ jQuery(document).ready(function() {
 	var target = ['a:not([rel*="shadowbox"])', 'a[rel*="shadowbox"]'];
 	var j, targ;
 	// 一時変数
-	var obj, temp, dom, img, ix, style, html, flg;
+	var obj, temp, dom, img, ix, len, style, html, flg;
 	var attr = ['height', 'width'];
 	// 正規表現
 	var reg_ignore = new RegExp('img\-short\-icon|printicon', 'gi');
@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
 	var base = ['fa-circle', 'fa-circle'];
 	var icon = ['fa-link', 'fa-camera'];
 	// アニメーション
-	var anon = ['fromleft', 'fromtop'];
+	var anon = ['frombottom', 'fromtop'];
 	var anof = ['fadeout', 'fadeout'];
 
 	// **************
@@ -70,15 +70,14 @@ jQuery(document).ready(function() {
 										// ... 以降の処理はスキップ
 										return;
 									} else {
-										// ... [class]にサイズ指定あり？
-										if ( temp.match(reg_size) ) {
+										if ( j === 0 ) {
 											// ********************
 											// *** サイズを取得 ***
 											// ********************
-											for ( ix = 0; ix < attr.length; ix++ ) {
+											for ( ix = 0, len = attr.length; ix < len; ix++ ) {
 												temp = jQuery(img).attr(attr[ix]);
 												if ( (typeof temp !== 'undefined') && (temp !== '') ) {
-													style += attr[ix]+':'+parseInt(temp)+'px!important;';
+													style += attr[ix]+':'+parseInt(temp)+'px;';
 												}
 											}
 											// オーバーレイのサイズ指定
