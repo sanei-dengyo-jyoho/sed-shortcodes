@@ -4,7 +4,7 @@
 * Description: Usefull Shortcodes For Any Corporation.
 * Author: Sanei Dengyo Co.,Ltd.
 * Author URI: http://www.sanei-dengyo.com/
-* Version: 1.1.0
+* Version: 1.0.3
 
 == Description ==
 
@@ -12,10 +12,8 @@
 
 = Some Feature =
 
-* Include Google Font.
-* [iconfont name="@@@"] with FontAwesome Icon.
-* [icomoon name="@@@"] with IcoMoon Icon.
 * [blockquote].
+* [iconfont name="@@@"] with FontAwesome.
 * [flatshadows][flatshadow].
 * [note], [tip], [important], [warning], [help].
 * [hightlight_...].
@@ -23,10 +21,6 @@
 * tag(a img) wraped with iconfont overlay.
 
 == Changelog ==
-
-= 1.1.0 =
-* Update:
- 1.Updated for WordPress 3.9
 
 = 1.0.3 =
 * Update:
