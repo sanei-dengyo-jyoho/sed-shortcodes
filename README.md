@@ -24,24 +24,20 @@
 == Changelog ==
 
 = 1.2.0 =
-* Update:
- 1.FontAwesome 4.1.0
+* Update FontAwesome 4.1.0
+* Delete FontName:Icomoon
 
 = 1.1.0 =
-* Update:
- 1.Updated for WordPress 3.9
+* Update for WordPress 3.9
 
 = 1.0.3 =
-* Update:
- 1.FontAwesome 4.0.3
+* Update FontAwesome 4.0.3
 
 = 1.0.2 =
-* Update:
- 1.FontAwesome 4.0.1
+* Update FontAwesome 4.0.1
 
 = 1.0.1 =
-* Bug fix:
- 1.Java Script js/sed-shortcodes.min.js.
+* Bug fix Java Script js/sed-shortcodes.min.js.
 
 = 1.0.0 =
 * The first release.
