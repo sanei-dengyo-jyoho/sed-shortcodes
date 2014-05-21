@@ -296,49 +296,6 @@ html {
 
 
 /******************************************************************************/
-/* font-family : icomoon */
-/******************************************************************************/
-[class^="icomoon-"],
-[class*=" icomoon-"] {
-	speak: none;
-
-	-webkit-text-rendering: optimizeLegibility;
-	text-rendering: optimizeLegibility;
-}
-/* makes sure icons active on rollover in links */
-a [class^="icomoon-"],
-a [class*=" icomoon-"] {
-	display: inline;
-}
-/* increased font size for icon-large */
-[class^="icomoon-"].icomoon-fixed-width,
-[class*=" icomoon-"].icomoon-fixed-width {
-	display: inline-block;
-	width: 1.1428571428571428em;
-	text-align: right;
-	padding-right: 0.2857142857142857em;
-}
-
-.icomoons-ul {
-	margin-left: 2.142857142857143em;
-	list-style-type: none;
-}
-
-.icomoons-ul > li {
-	list-style-type: none;
-	position: relative;
-}
-
-.icomoons-ul .icomoon-li {
-	position: absolute;
-	left: -2.142857142857143em;
-	width: 2.142857142857143em;
-	text-align: center;
-	line-height: inherit;
-}
-
-
-/******************************************************************************/
 /* Long Shadow */
 /******************************************************************************/
 .longshadows-wrapper {
@@ -759,7 +716,7 @@ a[href$=".aac"]:after,
 a[href$=".mp3"]:after,
 a[href$=".wma"]:after,
 a[href$=".mp4"]:after {
-	font-family: 'icomoon';
+	font-family: 'FontAwesome';
 	font-style: normal;
 	font-weight: normal;
 	font-size: inherit;
@@ -784,55 +741,55 @@ a[href$=".avi"]:after,
 a[href$=".mov"]:after,
 a[href$=".mpg"]:after,
 a[href$=".wmv"]:after {
-	content: "\e613";
+	content: "\f1c8";
 }
 
 a[href$=".flv"]:after,
 a[href$=".m4v"]:after {
-	content: "\e612";
+	content: "\f1c8";
 }
 
 a[href$=".pdf"]:after {
-	content: "\e7b2";
+	content: "\f1c1";
 }
 
 a[href$=".doc"]:after,
 a[href$=".docx"]:after {
-	content: "\e7b4";
+	content: "\f1c2";
 }
 
 a[href$=".xls"]:after,
 a[href$=".xlsx"]:after {
-	content: "\e7b5";
-}
-
-a[href$=".zip"]:after {
-	content: "\e7b6";
+	content: "\f1c3";
 }
 
 a[href$=".ppt"]:after,
 a[href$=".pptx"]:after {
-	content: "\e7b7";
+	content: "\f1c4";
+}
+
+a[href$=".zip"]:after {
+	content: "\f1c6";
 }
 
 a[href$=".wav"]:after,
 a[href$=".m4a"]:after {
-	content: "\e715";
+	content: "\f1c7";
 }
 
 a[href$=".txt"]:after {
-	content: "\e624";
+	content: "\f0f6";
 }
 
 a[href$=".csv"]:after {
-	content: "\e625";
+	content: "\f1c9";
 }
 
 a[href$=".aac"]:after,
 a[href$=".mp3"]:after,
 a[href$=".wma"]:after,
 a[href$=".mp4"]:after {
-	content: "\e610";
+	content: "\f1c7";
 }
 
 
@@ -2073,13 +2030,13 @@ div .tooltip:hover {
 }
 
 .gototop-hide {
-	-webkit-animation: GoToTopHide 0.5s linear 0.1s both;
-	animation: GoToTopHide 0.5s linear 0.1s both;
+	-webkit-animation: GoToTopHide 0.7s linear 0.2s both;
+	animation: GoToTopHide 0.7s linear 0.2s both;
 }
 
 .gototop-show {
-	-webkit-animation: GoToTopShow 0.7s linear 0.1s both;
-	animation: GoToTopShow 0.7s linear 0.1s both;
+	-webkit-animation: GoToTopShow 1.1s linear 0.3s both;
+	animation: GoToTopShow 1.1s linear 0.3s both;
 }
 
 .gototop a {
@@ -2738,7 +2695,7 @@ div .tooltip:hover {
 	}
 	20% {
 		bottom: 15px;
-		opacity: 0.6;
+		opacity: 0.3;
 		visibility: visible;
 	}
 	to {
@@ -2756,7 +2713,7 @@ div .tooltip:hover {
 	}
 	20% {
 		bottom: 15px;
-		opacity: 0.6;
+		opacity: 0.3;
 		visibility: visible;
 	}
 	to {
@@ -2772,9 +2729,9 @@ div .tooltip:hover {
 		opacity: 0;
 		visibility: visible;
 	}
-	80% {
+	70% {
 		bottom: 15px;
-		opacity: 0.6;
+		opacity: 0.3;
 		visibility: visible;
 	}
 	to {
@@ -2791,9 +2748,9 @@ div .tooltip:hover {
 		visibility: visible;
 		visibility: visible;
 	}
-	80% {
+	70% {
 		bottom: 15px;
-		opacity: 0.6;
+		opacity: 0.3;
 		visibility: visible;
 	}
 	to {

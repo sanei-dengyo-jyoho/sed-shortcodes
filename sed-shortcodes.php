@@ -1,14 +1,11 @@
 <?php
-/**
- * @package SED Shortcodes
- */
 /*
 Plugin Name: SED Shortcodes
 Plugin URI: http://www.sanei-dengyo.com/
 Description: Usefull Shortcodes For Any Corporation.
+Version: 1.2.0
 Author: Sanei Dengyo Co.,Ltd.
 Author URI: http://www.sanei-dengyo.com/
-Version: 1.1.0
 */
 
 
@@ -51,6 +48,30 @@ function sed_load_stylesheet_files() {
 add_action( 'wp_print_styles', 'sed_load_stylesheet_files' );
 
 
+/********************************************************************************/
+/* Java Script Load */
+/********************************************************************************/
+function sed_load_javascript_files() {
+	if ( !is_admin() ) {
+		wp_register_script(
+			'sed-shortcodes',
+			plugins_url( 'js/sed-shortcodes.min.js', __FILE__ ),
+			array( 'jquery' ),
+			'',
+			true
+		);
+
+		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'sed-shortcodes' );
+	}
+}
+
+add_action( 'wp_enqueue_scripts', 'sed_load_javascript_files' );
+
+
+/********************************************************************************/
+/* Top To Link Load */
+/********************************************************************************/
 function sed_add_totoplink_html() {
 	if ( !is_admin() ) {
 		$pref = 'gototop';
@@ -71,27 +92,6 @@ function sed_add_totoplink_html() {
 }
 
 add_action( 'wp_footer', 'sed_add_totoplink_html' );
-
-
-/********************************************************************************/
-/* Java Script Load */
-/********************************************************************************/
-function sed_load_javascript_files() {
-	if ( !is_admin() ) {
-		wp_register_script(
-			'sed-shortcodes',
-			plugins_url( 'js/sed-shortcodes.min.js', __FILE__ ),
-			array( 'jquery' ),
-			'',
-			true
-		);
-
-		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'sed-shortcodes' );
-	}
-}
-
-add_action( 'wp_enqueue_scripts', 'sed_load_javascript_files' );
 
 
 /********************************************************************************/
@@ -487,52 +487,52 @@ function sed_sc_iconfont( $atts ) {
 add_shortcode( 'iconfont', 'sed_sc_iconfont' );
 
 
-/********************************************************************************/
-/* Icomoon Icon Font */
-/********************************************************************************/
-function sed_sc_icomoon( $atts ) {
-	extract( shortcode_atts( array(
-			'name'			=>	'',
-			'class'			=>	'',
-			'color'			=>	'',
-			'li'			=>	'false',
-			'tagname'		=>	'i',
-			'size'			=>	'',
-			/* icon class name prefix */
-			'pref'			=>	'icomoon',
-	), $atts ) );
-
-	$data_li = '';
-	if ( $li == 'true' ) {
-		$data_li = $pref . '-li ';
-	}
-	$data_class = '';
-	if ( $class != '' ) {
-		$data_class = ' ' . $class;
-	}
-	$data_color = '';
-	if ( $color != '' ) {
-		$data_color = ' style="color:' . fnc_color_code( $color ) . ';"';
-	}
-	$data_size = '';
-	if ( $size != '' ) {
-		$data_size = ' fa-' . $size;
-	}
-
-	$ret = '';
-
-	if ( $class == '' ) {
-		if ( $data_li == '' ) {
-			$data_class = ' ' . $pref . '-fixed-width';
-		}
-	}
-	$ret .= '<' . $tagname . ' class="' . $data_li.$pref . ' ' . $pref . '-' . $name . $data_class . $data_size . '"' . $data_color . '>';
-	$ret .= '</' . $tagname . '>';
-
-	return $ret;
-}
-
-add_shortcode( 'icomoon', 'sed_sc_icomoon' );
+///********************************************************************************/
+///* Icomoon Icon Font */
+///********************************************************************************/
+//function sed_sc_icomoon( $atts ) {
+//	extract( shortcode_atts( array(
+//			'name'			=>	'',
+//			'class'			=>	'',
+//			'color'			=>	'',
+//			'li'			=>	'false',
+//			'tagname'		=>	'i',
+//			'size'			=>	'',
+//			/* icon class name prefix */
+//			'pref'			=>	'icomoon',
+//	), $atts ) );
+//
+//	$data_li = '';
+//	if ( $li == 'true' ) {
+//		$data_li = $pref . '-li ';
+//	}
+//	$data_class = '';
+//	if ( $class != '' ) {
+//		$data_class = ' ' . $class;
+//	}
+//	$data_color = '';
+//	if ( $color != '' ) {
+//		$data_color = ' style="color:' . fnc_color_code( $color ) . ';"';
+//	}
+//	$data_size = '';
+//	if ( $size != '' ) {
+//		$data_size = ' fa-' . $size;
+//	}
+//
+//	$ret = '';
+//
+//	if ( $class == '' ) {
+//		if ( $data_li == '' ) {
+//			$data_class = ' ' . $pref . '-fixed-width';
+//		}
+//	}
+//	$ret .= '<' . $tagname . ' class="' . $data_li.$pref . ' ' . $pref . '-' . $name . $data_class . $data_size . '"' . $data_color . '>';
+//	$ret .= '</' . $tagname . '>';
+//
+//	return $ret;
+//}
+//
+//add_shortcode( 'icomoon', 'sed_sc_icomoon' );
 
 
 /********************************************************************************/
@@ -697,7 +697,7 @@ function sed_sc_touchme_info( $atts ) {
 	}
 	$data_li = '';
 	if ( $li == 'true' ) {
-		$data_li = ' icomoon-li';
+		$data_li = ' fa-li';
 	}
 	$data_color = '';
 	if ( $color != '' ) {
@@ -710,43 +710,43 @@ function sed_sc_touchme_info( $atts ) {
 
 	$ret  = '';
 
-	$ret .= '<ul class="icomoons-ul touchme-info' . $data_class . '"' . $data_style. '>';
+	$ret .= '<ul class="fa-ul touchme-info' . $data_class . '"' . $data_style. '>';
 	if ( $postal != '' ) {
 		$content = do_shortcode( $postal );
-		$ret .= '<li><i class="icomoon-location'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
+		$ret .= '<li><i class="fa fa-map-marker'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
 	}
 	if ( $address != '' ) {
 		$content = do_shortcode( $address );
-		$ret .= '<li><i class="icomoon-office'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
+		$ret .= '<li><i class="fa fa-building'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
 	}
 	if ( $user != '' ) {
 		$content = do_shortcode( $user );
-		$ret .= '<li><i class="icomoon-user'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
+		$ret .= '<li><i class="fa fa-user'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
 	}
 	if ( $group != '' ) {
 		$content = do_shortcode( $group );
-		$ret .= '<li><i class="icomoon-users'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
+		$ret .= '<li><i class="fa fa-users'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
 	}
 	if ( $mobile != '' ) {
 		$content = do_shortcode( $mobile );
-		$ret .= '<li><i class="icomoon-mobile'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
+		$ret .= '<li><i class="fa fa-mobile'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
 	}
 	if ( $phone != '' ) {
 		$content = do_shortcode( $phone );
-		$ret .= '<li><i class="icomoon-phone'. $data_li .'"' . $data_color . '></i>' . $content;
+		$ret .= '<li><i class="fa fa-phone'. $data_li .'"' . $data_color . '></i>' . $content;
 		if ( $fax != '' ) {
 			$content = do_shortcode( $fax );
-			$ret .= '　<i class="icomoon-print icomoon-fixed-width"' . $data_color . '></i>' . $content;
+			$ret .= '　<i class="fa fa-fax"' . $data_color . '></i> ' . $content;
 		}
 		$ret .= $suffix.'</li>';
 	}
 	if ( $email != '' ) {
 		$content = do_shortcode( $email );
-		$ret .= '<li><i class="icomoon-mail'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
+		$ret .= '<li><i class="fa fa-envelope'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
 	}
 	if ( $url != '' ) {
 		$content = do_shortcode( $url );
-		$ret .= '<li><i class="icomoon-link'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
+		$ret .= '<li><i class="fa fa-external-link'. $data_li .'"' . $data_color . '></i>' . $content . '</li>';
 	}
 	$ret .= '</ul>';
 

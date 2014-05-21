@@ -1,35 +1,5 @@
 <?php
 /********************************************************************************/
-/* 管理画面のロゴを非表示 */
-/********************************************************************************/
-//function sed_hide_before_admin_bar_render() {
-//	global $wp_admin_bar;
-//
-//	$wp_admin_bar->remove_menu( 'wp-logo' );
-//	$wp_admin_bar->remove_menu( 'comments' );
-//	$wp_admin_bar->remove_menu( 'new-content' );
-//
-//	if ( !current_user_can( 'administrator' ) )
-//		$wp_admin_bar->remove_menu( 'my-sites' );
-//}
-//
-//add_action( 'wp_before_admin_bar_render', 'sed_hide_before_admin_bar_render' );
-
-
-/********************************************************************************/
-/* プロフィールから要らない項目を削除 */
-/********************************************************************************/
-function sed_hide_profile_fields( $contactmethods ) {
-	unset( $contactmethods['aim'] );
-	unset( $contactmethods['jabber'] );
-	unset( $contactmethods['yim'] );
-	return $contactmethods;
-}
-
-add_filter( 'user_contactmethods', 'sed_hide_profile_fields' );
-
-
-/********************************************************************************/
 /* 投稿／ページ画面の不要なコンテンツを非表示 */
 /********************************************************************************/
 function sed_remove_default_post_screen_metaboxes() {
