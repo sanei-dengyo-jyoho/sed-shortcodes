@@ -1389,6 +1389,7 @@ a[type="button"] {
 	margin: 0 -1px 0 0;
 	padding: 0;
 	border: 1px solid #eeeeee;
+	background-size: cover;
 
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -1479,6 +1480,7 @@ a[type="button"] {
 .image-over-zoom-enter {
 	filter: alpha(opacity=50);
 	opacity: 0.5;
+	background-size: cover;
 
 	-webkit-transform: scale(1.142857142857143, 1.142857142857143);
 	-ms-transform: scale(1.142857142857143, 1.142857142857143);
