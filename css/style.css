@@ -1524,6 +1524,7 @@ a[type="button"] {
 	border: 1px solid transparent;
 	background-color: rgba(128, 128, 128, 0.5);
 	background-size: cover;
+	overflow: hidden;
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -1567,6 +1568,7 @@ a[type="button"] {
 	position: absolute;
 	display: inline-block;
 	text-align: center;
+	overflow: hidden;
 	width: 100%;
 	height: 100%;
 	top: 0;
