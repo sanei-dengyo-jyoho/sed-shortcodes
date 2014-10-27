@@ -2,6 +2,14 @@
 /********************************************************************************/
 /* 投稿／ページ画面の不要なコンテンツを非表示 */
 /********************************************************************************/
+function sed_remove_wp_logo() {
+	global $wp_admin_bar;
+	$wp_admin_bar -> remove_menu('wp-logo');
+}
+
+add_action( 'wp_before_admin_bar_render', 'sed_remove_wp_logo' );
+
+
 function sed_remove_default_post_screen_metaboxes() {
 	remove_meta_box( 'postcustom', 'post', 'normal' );				// カスタムフィールド
 	remove_meta_box( 'postexcerpt', 'post', 'normal' );				// 抜粋

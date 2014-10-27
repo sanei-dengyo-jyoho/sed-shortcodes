@@ -14,7 +14,6 @@ Author URI: http://www.sanei-dengyo.com/
 /********************************************************************************/
 require_once( 'includes/core-functions.php' );
 require_once( 'includes/admin-functions.php' );
-require_once( 'includes/minifier-script.php' );
 
 
 /********************************************************************************/
